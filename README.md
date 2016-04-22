@@ -15,7 +15,7 @@ blocksort.py:
         12  Jane
         999 Jill
         
-    Will be keep the sections together, and sort the contents in-place
+    Will keep the sections together, and sort the contents in-place
 
 clip.sh
     Simply calls xclip based on whether stdin is a terminal. Ex:
