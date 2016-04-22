@@ -22,3 +22,13 @@ clip.sh
         $ clip                      # Dump clipboard
         $ clip | curl -sT chunk.io  # Pipe clipboard to curl
         $ clip | grep 'foo' | clip  # Modify clipboard
+
+system-sleep-domains.sh
+
+    Causes all running VMs to be saved to disk by libvirt when the system goes
+    into suspend. Prevents issues with guests hanging with 100% CPU util on
+    resume. Also, allows recovery of guest if the system does not return from
+    suspend (e.g. dead battery).
+
+    This script should be symlinked to:
+        /usr/lib/systemd/system-sleep/system-sleep-domains.sh
