@@ -1,1 +1,0 @@
-sh/system-sleep-domains.sh
