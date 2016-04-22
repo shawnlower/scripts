@@ -11,7 +11,7 @@ SELECTION=clipboard
 
 # Trying this will hang
 if [ ! -t 0 ] && [ ! -t 1 ]; then
-    echo "Simultaneous redirect of stdin and stdout is not supported."
+    echo "Simultaneous redirect of stdin and stdout is not supported." >&2
     exit 1
 fi
 
