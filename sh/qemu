@@ -14,6 +14,13 @@ logger -p local0.notice "$0 called with: '$*'"
 COMMAND="/usr/local/lib/virsh-sync-guest-time.sh"
 
 if [[ $# -eq 4 ]] && [[ "$2" == "started" ]] && [[ "$3" == "begin" ]]; then
+
     # Run our command, passing the guest ($1) as the argument
     echo $COMMAND $1 | at now
+
+    # Note: as mentioned on libvirt.org docs, do NOT call virsh/libvirt from
+    # within a libvirt hook, as that will likely result in a deadlock. Using
+    # 'at' *should* be safe, however. As long as we're running from outside
+    # libvirt's process, normal libvirt locking should be enough, and we
+    # don't need to use e.g.: 'at now + SOME_ARBITRARY_TIME_PERIOD'
 fi
