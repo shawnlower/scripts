@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# qemu hook script for libvirt
+# (or libvirt hook script for qemu?)
+# https://www.libvirt.org/hooks.html
+
+logger -p local0.notice "$0 called with: '$*'"
+
+# === Sync guest time with host ===
+# 
+# The qemu agent inside the guest should sync the guest's time on boot, 
+# however that does not account for things like 'virsh managedsave'.
+
+COMMAND="/usr/local/lib/virsh-sync-guest-time.sh"
+
+if [[ $# -eq 4 ]] && [[ "$2" == "started" ]] && [[ "$3" == "begin" ]]; then
+    # Run our command, passing the guest ($1) as the argument
+    echo $COMMAND $1 | at now
+fi
